@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class OpenAPI;
+@class UOCData;
 
 @interface MainViewController : UIViewController
 
@@ -18,6 +19,6 @@
 
 - (IBAction)switchAuthorisation:(id)sender;
 
-- (id)initWithData:(OpenAPI *)oal;
+- (id)initWithOrigin:(OpenAPI *)oal data:(UOCData *)uds;
 
 @end

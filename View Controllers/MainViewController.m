@@ -8,21 +8,24 @@
 
 #import "MainViewController.h"
 #import "OpenAPI.h"
+#import "UOCData.h"
 
 @interface MainViewController ()
 {
     OpenAPI *_oal;
+    UOCData *_uds;
 }
 @end
 
 @implementation MainViewController
 
-- (id)initWithData:(OpenAPI *)oal
+- (id)initWithOrigin:(OpenAPI *)oal data:(UOCData *)uds
 {
     self = [super init];
     
     if (self) {
         _oal = oal;
+        _uds = uds;
     }
     
     return  self;
@@ -36,6 +39,8 @@
         [_authoriseButton setImage:[UIImage imageNamed:@"connected.png"] forState:UIControlStateNormal];
     else
         [_authoriseButton setImage:[UIImage imageNamed:@"disconnected.png"] forState:UIControlStateNormal];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthorised:) name:kOAPIUserAuthorisedNotification object:_oal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,18 +49,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dismissWebView {
+    [_authorisationWebView removeFromSuperview];
+    _authorisationWebView = nil;
+}
+
+- (void)showWebView {
+    CGRect webViewFrame = self.view.bounds;
+    webViewFrame.origin.y = _authoriseButton.frame.origin.y + _authoriseButton.frame.size.height;
+    webViewFrame.size.height -= _authoriseButton.frame.origin.y + _authoriseButton.frame.size.height;
+    _authorisationWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
+    [self.view addSubview:_authorisationWebView];
+}
+
 - (IBAction)switchAuthorisation:(id)sender {
     
-    if ([_oal isUserAuthorised]) {
-        [_oal deauthorize];
-        [_authoriseButton setImage:[UIImage imageNamed:@"disconnected.png"] forState:UIControlStateNormal];
+    // Are we in the middle of an authorisation process?
+    if (_authorisationWebView == nil)
+    {
+        if ([_oal isUserAuthorised]) {
+            [_oal deauthorize];
+            [_authoriseButton setImage:[UIImage imageNamed:@"disconnected.png"] forState:UIControlStateNormal];
+        } else {
+            [self showWebView];
+            [_oal authoriseUsingWebView:_authorisationWebView];
+        }
     } else {
-        CGRect webViewFrame = CGRectMake(10, 10, 300, 300);
-        _authorisationWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
-        [self.view addSubview:_authorisationWebView];
-        [_oal authoriseUsingWebView:_authorisationWebView];
+        [self dismissWebView];  
     }
 }
 
+#pragma mark - OpenAPI
+
+- (void)userAuthorised:(NSNotification *)notification
+{
+    [self dismissWebView];
+}
 
 @end

@@ -11,6 +11,7 @@
 
 // Collaborators
 #import "OpenAPI.h"
+#import "UOCData.h"
 
 // Test support
 #import <SenTestingKit/SenTestingKit.h>
@@ -28,13 +29,14 @@
 {
 	MainViewController *sut;
     OpenAPI *oal;
+    UOCData *uds;
 }
 
 - (void)setUp
 {
     [super setUp];
     oal = mock([OpenAPI class]);
-    sut = [[MainViewController alloc] initWithData:oal];
+    sut = [[MainViewController alloc] initWithOrigin:oal data:uds];
 }
 
 - (void)tearDown
@@ -126,6 +128,8 @@
     [verify(oal) authoriseUsingWebView:(id)instanceOf([UIWebView class])];
 }
 
+// Web View Tests
+
 - (void)testWhenSwitchAuthorisationCallsAuthoriseWebViewIsCreated
 {
     // given
@@ -163,4 +167,67 @@
     assertThat(sut.authorisationWebView.superview, is(equalTo(sut.view)));
 }
 
+- (void)testWhenAuthorisationIsDoneWebViewIsDismissed
+{
+    // given
+    [sut view];
+    
+    // when
+    [sut switchAuthorisation:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOAPIUserAuthorisedNotification object:oal];
+    
+    // then
+    assertThat(sut.authorisationWebView.superview, is(nilValue()));
+}
+
+- (void)testWhenAuthorisationIsDoneWebViewIsDestroyed
+{
+    // given
+    [sut view];
+    
+    // when
+    [sut switchAuthorisation:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kOAPIUserAuthorisedNotification object:oal];
+    
+    // then
+    assertThat([sut authorisationWebView], is(nilValue()));
+}
+
+- (void)testWhenSwitchAuthorisationCallsAuthoriseDuringAuthorisationProcessWebViewIsDismissed
+{
+    // given
+    [sut view];
+    sut.authorisationWebView = mock([UIWebView class]);
+    
+    // when
+    [sut switchAuthorisation:nil];
+    
+    // then
+    assertThat(sut.authorisationWebView.superview, is(nilValue()));
+}
+
+- (void)testWhenSwitchAuthorisationCallsAuthoriseDuringAuthorisationProcessWebViewIsDestroyed
+{
+    // given
+    [sut view];
+    sut.authorisationWebView = mock([UIWebView class]);
+    
+    // when
+    [sut switchAuthorisation:nil];
+    
+    // then
+    assertThat([sut authorisationWebView], is(nilValue()));
+}
+
+// Initial status
+
+- (void)testWhenThereIsNoDataAuthoriseIsCalled
+{
+    // given
+    [sut view];
+    
+    // when
+    
+    // then
+}
 @end

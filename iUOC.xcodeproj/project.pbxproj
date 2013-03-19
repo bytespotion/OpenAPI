@@ -19,6 +19,11 @@
 		8A82006716F394C300259378 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A82006516F394C300259378 /* MainViewController.m */; };
 		8A82006816F394C300259378 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A82006616F394C300259378 /* MainViewController.xib */; };
 		8A82006A16F396A800259378 /* MainViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A82006916F396A800259378 /* MainViewControllerTests.m */; };
+		8AD57D9B16F720B100D5AD34 /* UOCData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD57D9A16F720B100D5AD34 /* UOCData.m */; };
+		8AD57D9D16F7216E00D5AD34 /* UOCDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD57D9C16F7216E00D5AD34 /* UOCDataTests.m */; };
+		8AD57D9F16F721D300D5AD34 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD57D9E16F721D300D5AD34 /* CoreData.framework */; };
+		8AD57DA016F727E200D5AD34 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD57D9E16F721D300D5AD34 /* CoreData.framework */; };
+		8AD57DA316F728A500D5AD34 /* iUOC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8AD57DA116F728A500D5AD34 /* iUOC.xcdatamodeld */; };
 		8ADB4BC816F37FCF0057BCCE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADB4BC716F37FCF0057BCCE /* UIKit.framework */; };
 		8ADB4BCA16F37FCF0057BCCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADB4BC916F37FCF0057BCCE /* Foundation.framework */; };
 		8ADB4BCC16F37FCF0057BCCE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADB4BCB16F37FCF0057BCCE /* CoreGraphics.framework */; };
@@ -59,6 +64,11 @@
 		8A82006516F394C300259378 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		8A82006616F394C300259378 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		8A82006916F396A800259378 /* MainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerTests.m; sourceTree = "<group>"; };
+		8AD57D9916F720B100D5AD34 /* UOCData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UOCData.h; sourceTree = "<group>"; };
+		8AD57D9A16F720B100D5AD34 /* UOCData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UOCData.m; sourceTree = "<group>"; };
+		8AD57D9C16F7216E00D5AD34 /* UOCDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UOCDataTests.m; sourceTree = "<group>"; };
+		8AD57D9E16F721D300D5AD34 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8AD57DA216F728A500D5AD34 /* iUOC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iUOC.xcdatamodel; sourceTree = "<group>"; };
 		8ADB4BC416F37FCF0057BCCE /* iUOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iUOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADB4BC716F37FCF0057BCCE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ADB4BC916F37FCF0057BCCE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD57D9F16F721D300D5AD34 /* CoreData.framework in Frameworks */,
 				8ADB4BC816F37FCF0057BCCE /* UIKit.framework in Frameworks */,
 				8ADB4BCA16F37FCF0057BCCE /* Foundation.framework in Frameworks */,
 				8ADB4BCC16F37FCF0057BCCE /* CoreGraphics.framework in Frameworks */,
@@ -93,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD57DA016F727E200D5AD34 /* CoreData.framework in Frameworks */,
 				8ADB4BE616F37FCF0057BCCE /* SenTestingKit.framework in Frameworks */,
 				8ADB4BE716F37FCF0057BCCE /* UIKit.framework in Frameworks */,
 				8ADB4BE816F37FCF0057BCCE /* Foundation.framework in Frameworks */,
@@ -137,9 +149,21 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		8AD57D9816F7207A00D5AD34 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8AD57D9916F720B100D5AD34 /* UOCData.h */,
+				8AD57D9A16F720B100D5AD34 /* UOCData.m */,
+				8AD57D9C16F7216E00D5AD34 /* UOCDataTests.m */,
+				8AD57DA116F728A500D5AD34 /* iUOC.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		8ADB4BBB16F37FCF0057BCCE = {
 			isa = PBXGroup;
 			children = (
+				8AD57D9816F7207A00D5AD34 /* Data */,
 				8A82006316F3946900259378 /* View Controllers */,
 				8A82005816F3932A00259378 /* images */,
 				8A82004B16F3886400259378 /* OpenAPI */,
@@ -162,6 +186,7 @@
 		8ADB4BC616F37FCF0057BCCE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8AD57D9E16F721D300D5AD34 /* CoreData.framework */,
 				8A82005616F388B500259378 /* OCMockitoIOS.framework */,
 				8A82005416F388AA00259378 /* OCHamcrestIOS.framework */,
 				8ADB4BC716F37FCF0057BCCE /* UIKit.framework */,
@@ -333,6 +358,8 @@
 				8ADB4BD816F37FCF0057BCCE /* AppDelegate.m in Sources */,
 				8A82004F16F3886400259378 /* OpenAPI.m in Sources */,
 				8A82006716F394C300259378 /* MainViewController.m in Sources */,
+				8AD57D9B16F720B100D5AD34 /* UOCData.m in Sources */,
+				8AD57DA316F728A500D5AD34 /* iUOC.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +369,7 @@
 			files = (
 				8A82005316F3888C00259378 /* OpenAPITest.m in Sources */,
 				8A82006A16F396A800259378 /* MainViewControllerTests.m in Sources */,
+				8AD57D9D16F7216E00D5AD34 /* UOCDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +552,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8AD57DA116F728A500D5AD34 /* iUOC.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8AD57DA216F728A500D5AD34 /* iUOC.xcdatamodel */,
+			);
+			currentVersion = 8AD57DA216F728A500D5AD34 /* iUOC.xcdatamodel */;
+			path = iUOC.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8ADB4BBC16F37FCF0057BCCE /* Project object */;
 }
